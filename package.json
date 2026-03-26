@@ -1,0 +1,12 @@
+{
+  "name": "comapeo-kml-generator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Fixture tests for CoMapeo KML generator",
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "proj4": "^2.19.10"
+  }
+}

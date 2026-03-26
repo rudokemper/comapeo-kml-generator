@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CoMapeo KML Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.5/proj4.js"></script>
+    <link rel="icon" href="./assets/favicon.ico" />
+  </head>
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      width: 85%;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin-top: 15px;
+        padding: 15px;
+      }
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      font-size: 1.8em;
+    }
+
+    p {
+      text-align: center;
+      line-height: 1.6em;
+      margin-bottom: 2em;
+      color: #555;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    textarea,
+    input[type="file"] {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 4px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    #downloadLink {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 0.8rem;
+      color: #fff;
+      background-color: rgb(156, 73, 156);
+      border-radius: 4px;
+      text-align: center;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #downloadLink:hover {
+      background-color: rgb(130, 60, 130);
+    }
+
+    .github {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      .btn {
+        background-color: #616161;
+      }
+
+      .btn:hover {
+        background-color: #424242;
+      }
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <img
+        src="assets/comapeo.png"
+        alt="CoMapeo Logo"
+        style="display: block; margin: 0 auto; width: 50%"
+      />
+      <h1>CoMapeo KML Generator</h1>
+      <p>
+        Generate a KML file from one or more CoMapeo alert messages (which are
+        observations that were shared via WhatsApp or a different messaging
+        tool).
+      </p>
+      <form id="kmlForm" class="form-group">
+        <label for="message">Message:</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="8"
+          cols="50"
+          placeholder="CoMapeo data sent from My Project - Clay - Mar 26, 2026, 2:00 PM
+Location: UTM 18T 585000 4513500
+Precision: 7.129000186920166m
+[Description: My project's ceramics]
+
+— Sent from CoMapeo —"
+          required
+        ></textarea>
+        <label for="image">Upload Image (optional):</label>
+        <input type="file" id="image" name="image" />
+        <button type="button" class="btn" onclick="addToKML()">
+          Add to KML
+        </button>
+      </form>
+      <br />
+      <label id="downloadLabel" style="display: none"></label>
+      <a
+        id="downloadLink"
+        class="btn"
+        onclick="downloadKML()"
+        style="display: none"
+        >Download KML</a
+      >
+    </div>
+    <div class="github">
+      <a
+        href="https://github.com/rudokemper/comapeo-kml-generator"
+        class="btn"
+        target="_blank"
+      >
+        <i class="fab fa-github"></i> GitHub
+      </a>
+    </div>
+    <script src="script/kmlGenerator.js"></script>
+  </body>
+</html>
